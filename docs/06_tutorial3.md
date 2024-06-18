@@ -215,20 +215,6 @@ Now let's gather our scroll data and setup our folders...
 
 We're going to start with Scroll 1 as this is the scroll that the Grand Prize segments were from, and is also the easiest of the current scrolls to segment. VC requires all of the folders listed under the PHercParis4.volpkg, in addition to the config.json and meta.json files.
 
-Here is an `rclone` command to download Scroll 1 volumes quickly:
-
-```bash
-rclone copy :http:/full-scrolls/Scroll1/PHercParis4.volpkg/volumes/20230205180739/ . --http-url https://registeredusers:only@dl.ash2txt.org/ --progress --multi-thread-streams=32 --transfers=32 --size-only
-```
-If you wish to use a smaller portion of Scroll 1 to begin, rather than the entire scroll, you can download 1cm of scan data from the center using:
-
-```bash
-for i in `seq 6000 7250`; do wget --user=registeredusers --password=only http://dl.ash2txt.org/full-scrolls/Scroll1/PHercParis4.volpkg/volumes/20230205180739/0$i.tif; done
-```
-
-Be sure to have the config.json file at the root of the .volpkg, and the meta.json file in the volumes so that VC can work with it.
-More information can be found on the [Vesuvius Data Download Repo](https://github.com/JamesDarby345/VesuviusDataDownload).
-
 This is the recommended structure for the full_scrolls folder (with a full example given for scroll1):
 
 ```
@@ -261,6 +247,21 @@ And this is the recommended structure for your new_segments folder:
     ├── pherc1667
     └── run_vc.sh
 ```
+
+To download the scroll data, first navigate to the `/volumes/20230205180739` directory. You can also place the files in the `volumes/20230205180739` directory after they are downloaded. 
+Use this `rclone` command to download Scroll 1 volumes quickly:
+
+```bash
+rclone copy :http:/full-scrolls/Scroll1/PHercParis4.volpkg/volumes/20230205180739/ . --http-url https://registeredusers:only@dl.ash2txt.org/ --progress --multi-thread-streams=32 --transfers=32 --size-only
+```
+If you wish to use a smaller portion of Scroll 1 to begin, rather than the entire scroll, you can download 1cm of scan data from the center using:
+
+```bash
+for i in `seq 6000 7250`; do wget --user=registeredusers --password=only http://dl.ash2txt.org/full-scrolls/Scroll1/PHercParis4.volpkg/volumes/20230205180739/0$i.tif; done
+```
+Be sure to have the config.json file at the root of the `.volpkg`, and the meta.json file in the `volumes` so that VC can work with it.
+More information can be found on the [Vesuvius Data Download Repo](https://github.com/JamesDarby345/VesuviusDataDownload).
+
 ### Running the Volume Cartopgrapher GUI
 
 
